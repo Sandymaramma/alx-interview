@@ -1,19 +1,32 @@
 #!/usr/bin/python3
-""" method that calculates fewest number of operations """
+""" Minimum operations interview coding challenge """
 
 
-def minOperations(n):
-    if n == 1:
+def minOperations(n: int) -> int:
+    """ Calculates the minimum Operations
+
+    Args:
+        n (int): number of characters to copy and paste
+
+    Returns:
+        int: Minimum number of operations needed to result in exactly n H
+    """
+    if n <= 1:
         return 0
 
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            return i + minOperations(n // i)
+    clip = 0
+    ops = 0
+    char_len = 1
 
-    return n
-
-
-# Example usage:
-n = 9
-result = minOperations(n)
-print(result)  # Output will be 6
+    while char_len < n:
+        # if char_len is a factor of n do copy and paste
+        if n % char_len == 0:
+            # add copy ops
+            ops += 1
+            # save the number of characters in the clipboard
+            clip = char_len
+        # else just paste whats already in the clip
+        char_len += clip
+        # add paste ops
+        ops += 1
+    return ops
