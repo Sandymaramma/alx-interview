@@ -1,13 +1,15 @@
 #!/usr/bin/python3
-""" method to calculate fewest number of operations """
+""" method that calculates fewest number of operations """
 
 
 def minOperations(n):
-    if n <= 1:
+    if n == 1:
         return 0
-    for i in range(2, n + 1):
+
+    for i in range(2, int(n**0.5) + 1):
         if n % i == 0:
-            return minOperations(int(n / i)) + 1
+            return i + minOperations(n // i)
+
     return n
 
 
