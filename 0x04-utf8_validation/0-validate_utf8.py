@@ -3,10 +3,6 @@
 
 
 def validUTF8(data):
-    """
-    method that determines if a given data set
-    represents a valid UTF-8 encoding
-    """
     nbytes = 0
 
     b1 = 1 << 7
